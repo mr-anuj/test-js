@@ -1,0 +1,50 @@
+body {
+  background-color: #191b25ff;
+}
+/* .front-img {
+  height: 100vh;
+  width: 500px !important;
+} */
+
+.front-img {
+  background: url(images/laptop-mockup-3.jpeg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: 100vh;
+  filter: blur(4px);
+}
+
+.c-left {
+  left: 157px !important;
+}
+
+.card-img-top {
+  height: 200px !important;
+  width: 100px !important;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custome-btn {
+  position: absolute !important;
+  left: 30%;
+  top: 40%;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease !important;
+}
+
+.single-product:hover .custome-btn {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-85px);
+}
+.price span {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0167f3;
+}
+footer {
+  background-color: #212529;
+}

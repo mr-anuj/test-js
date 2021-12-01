@@ -1,0 +1,74 @@
+fetch("database.json")
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    appendData(data);
+  })
+  .catch((err) => {
+    console.log("error" + err);
+  });
+
+function appendData(data) {
+  let card_data = document.getElementById("data-load");
+  //   console.log(data);
+  let output = [];
+  setTimeout(() => {
+    let filterData = data.filter((fil) => {
+      //   fil.popular == true;
+      return fil.popular == true;
+    });
+    // console.log(filterData);
+    filterData.map((d) => {
+      if (d.rating.rate > 0) {
+        let rating = Math.round(d.rating.rate * 2) / 2;
+
+        //Append all the filled whole stars
+        for (let i = rating; i >= 1; i--) {
+          output.push(
+            '<i class="fas fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;'
+          );
+
+          if (i == 0.5)
+            output.push(
+              '<i class="fas fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;'
+            );
+
+          // Fill the empty stars
+          for (let i = 5 - rating; i >= 1; i--)
+            output.push(
+              '<i class="fas fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;'
+            );
+        }
+      }
+      let data = `
+        
+        <div class="col-md-4  single-product ">
+        <div class="card" style="width: 18rem">
+          <img id="c-img" src=${d.image} class="card-img-top img-fluid pt-4 position-relative" alt="..." />
+          <div class="card-body">
+            <h5 id="c-title" class="card-title text-success">${d.title}</h5>
+            <hr>
+            <div class="mb-2">
+            <span>
+           ${output}
+            </span>
+            </div>
+            <div class="price">
+          
+          
+            <span>$${d.price}<span>
+            </div>
+            <a  href="#" class="btn btn-primary custome-btn">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+
+        
+        
+        
+        `;
+      card_data.innerHTML += data;
+    });
+  }, 2000);
+}
